@@ -1,12 +1,12 @@
 {
   "name": "fang---data-structures-and-algo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A compilation of data structures and algorithms from the 'Master the Coding Interview: Big Tech (FAANG) Interviews' by ZTM on Udemy",
   "main": "script.ts",
   "scripts": {
-    "start": "ts-node section_29.ts"
+    "start": "ts-node section_30.ts"
   },
-  "author": "",
+  "author": "Eduardo Alfredo Casanova Lope",
   "license": "ISC",
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",

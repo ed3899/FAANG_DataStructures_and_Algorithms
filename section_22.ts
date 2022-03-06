@@ -2,7 +2,7 @@
  * Implementing a priority queue
  */
 
-class PriorityQueue {
+export class PriorityQueue {
   private heap: number[];
   private comparator: (_a: number, _b: number) => boolean;
 
@@ -19,8 +19,8 @@ class PriorityQueue {
     return this.size() === 0;
   }
 
-  isNotEmpty():boolean {
-    return !this.isEmpty()
+  isNotEmpty(): boolean {
+    return !this.isEmpty();
   }
 
   peek(): number {
@@ -106,13 +106,12 @@ class PriorityQueue {
     }
   }
 }
+// const pq = new PriorityQueue();
+// const n = [15, 12, 10, 7, 3, 5];
+// n.forEach(v => pq.push(v));
 
-const pq = new PriorityQueue();
-const n = [15, 12, 10, 7, 3, 5];
-n.forEach(v => pq.push(v));
-
-console.log(pq.peek());
-pq.push(45);
-console.log(pq.peek());
-pq.pop();
-console.log(pq.peek());
+// console.log(pq.peek());
+// pq.push(45);
+// console.log(pq.peek());
+// pq.pop();
+// console.log(pq.peek());
