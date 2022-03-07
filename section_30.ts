@@ -40,11 +40,25 @@ const t = [
   [3, 1, 5],
 ];
 
+/**
+ * @description 
+ * T: (E*logN + NlogN -> E*logN)
+ * S: O(E+N)
+ * Can the graph be unconnected? Yes
+ * Can the time be negative integers? No, always positive
+ * @param _times 
+ * @param _numberOfNodes 
+ * @param _selectedNode 
+ * @returns How long it takes for
+ * all nodes to receive the signal. Return -1  if it's
+ * impossible
+ */
 const networkDelayTime = function (
   _times: Array<Array<number>>,
   _numberOfNodes: number,
   _selectedNode: number
 ) {
+  //Generates the data structures we need with an IIFE
   const [distancesArray, adjList, minHeap] = (function generateUtilities(
     _numberOfNodes: number,
     _selectedNode: number
@@ -71,17 +85,19 @@ const networkDelayTime = function (
   //Remember we consider the index
   minHeap.push(_selectedNode - 1);
 
+  //Populates the adjList
   for (const item of _times) {
     const [source, target, weight] = item;
     adjList[source - 1].push([target - 1, weight]);
   }
 
+  //Performs the traversal
   while (minHeap.isNotEmpty()) {
     const currentVertex = minHeap.pop()!;
     const adjacent = adjList[currentVertex];
 
-    for (let i = 0; i < adjacent.length; i++) {
-      const [neighbouringVertex, weight] = adjacent[i];
+    for (const item of adjacent) {
+      const [neighbouringVertex, weight] = item;
 
       if (
         //Compare current weight vs distance stored for its neighbour
@@ -97,6 +113,7 @@ const networkDelayTime = function (
     }
   }
 
+  //Verifies the answer, the array will contain value summing up to the shortest path
   const answer = Math.max(...distancesArray);
   return answer === Infinity ? -1 : answer;
 };
