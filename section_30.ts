@@ -41,14 +41,14 @@ const t = [
 ];
 
 /**
- * @description 
+ * @description
  * T: (E*logN + NlogN -> E*logN)
  * S: O(E+N)
  * Can the graph be unconnected? Yes
  * Can the time be negative integers? No, always positive
- * @param _times 
- * @param _numberOfNodes 
- * @param _selectedNode 
+ * @param _times
+ * @param _numberOfNodes
+ * @param _selectedNode
  * @returns How long it takes for
  * all nodes to receive the signal. Return -1  if it's
  * impossible
@@ -119,3 +119,73 @@ const networkDelayTime = function (
 };
 
 console.log(networkDelayTime(t, 5, 1));
+
+const t2 = [
+  [1, 4, 2],
+  [1, 2, 9],
+  [4, 2, -4],
+  [2, 5, -3],
+  [4, 5, 6],
+  [3, 2, 3],
+  [5, 3, 7],
+  [3, 1, 5],
+];
+
+/**
+ * %Bellman and Ford
+ * Dynamic Programming
+ */
+
+const netWorkTimeDelay_BellFord = function (
+  _times: number[][],
+  _numberOfNodes: number,
+  _startingNode: number
+) {
+  //Generate only distances array
+  const distancesArray = (function generateUtility(
+    _numberOfNodes: number,
+    _startingNode: number
+  ) {
+    //Generate distances Array
+    const _distancesArray = new Array(_numberOfNodes).fill(
+      Infinity
+    ) as Array<number>;
+
+    // Consider the indexing of an array
+    _distancesArray[_startingNode - 1] = 0;
+
+    return _distancesArray;
+  })(_numberOfNodes, _startingNode);
+
+  /**
+   * _numberOfNodes -1 , the maximum amount of iteration to go through
+   * all the nodes. Prevents us from falling into negative cycles
+   */
+  for (let i = 0; i < _numberOfNodes - 1; i++) {
+    let count = 0;
+
+    //Loop through the edges
+    for (const edge of _times) {
+      const [source, target, weight] = edge;
+      /**
+       * Sum up the cummulative distance towards that node towards that node, always
+       * aiming for the shortest
+       */
+      if (distancesArray[source - 1] + weight < distancesArray[target - 1]) {
+        distancesArray[target - 1] = distancesArray[source - 1] + weight;
+        count++;
+      }
+    }
+
+    //No values were updated
+    if (count === 0) break;
+  }
+
+  //Verifies the answer, the array will contain value summing up to the shortest path
+  const answer = Math.max(...distancesArray);
+
+  //Making sure all nodes were reached
+  return answer === Infinity ? -1 : answer;
+};
+
+console.log(netWorkTimeDelay_BellFord(t2, 5, 1));
