@@ -89,6 +89,12 @@ const minCostClimbingStairs_Ite = function (_cost: number[]) {
 
 console.log("It", minCostClimbingStairs_Ite([20, 15, 30, 5]));
 
+/**
+ * T:O(n)
+ * S:O(1)
+ * @param _cost 
+ * @returns 
+ */
 const minCostClimbingStairs_IteOpt = function (_cost: number[]) {
   const n = _cost.length;
 
