@@ -4,7 +4,7 @@
   "description": "A compilation of data structures and algorithms from the 'Master the Coding Interview: Big Tech (FAANG) Interviews' by ZTM on Udemy",
   "main": "script.ts",
   "scripts": {
-    "start": "ts-node section_33.ts"
+    "start": "ts-node section_34.ts"
   },
   "author": "Eduardo Alfredo Casanova Lope",
   "license": "ISC",
